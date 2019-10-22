@@ -10,14 +10,28 @@ class Chart extends Component {
     instance;
     constructor(props) {
         super(props);
-        console.log(dailySales)
+        this.state = {
+            options: this.props.options,
+            type: null
+        }
     }
    
     componentDidMount() {
-        this.instance = HighCharts.chart('theChart', this.props.options)
+        this.instance = HighCharts.chart('theChart', this.state.options)
+    }
+    checkState(props) {
+        if(props.type != this.state.type){
+            this.setState({
+                options: props.options,
+                type: props.type
+            }, ()=>{
+                this.instance = HighCharts.chart('theChart', this.state.options)
+            })
+        }
     }
 
     render() {
+        this.checkState(this.props)
         return <div><div id="theChart"></div></div>
     }
 }

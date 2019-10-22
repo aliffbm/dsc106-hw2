@@ -13,8 +13,8 @@ class App extends Component {
           <h6>Select below whether you'd like to see an analysis on Monthly or Daily Sales</h6>
         </div>
         <nav className="nav navbar-light bg-light justify-content-center">
-          <button className="btn btn-info m-2"><Link className="nav-item nav-link text-light" to="/monthly-sales/">Monthly Sales</Link></button>
-          <button className="btn btn-info m-2"><Link className="nav-item nav-link text-light" to="/daily-sales/">Daily Sales</Link></button>
+          <button className="btn btn-info m-2"><Link className="nav-item nav-link text-light" to="/monthly-sales/all">Monthly Sales</Link></button>
+          <button className="btn btn-info m-2"><Link className="nav-item nav-link text-light" to="/daily-sales/all">Daily Sales</Link></button>
         </nav>
         <main>
           <Switch>
