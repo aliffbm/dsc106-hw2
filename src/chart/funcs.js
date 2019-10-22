@@ -1,3 +1,5 @@
-function makeOptions(type, data) {
-
+module.exports = {
+    makeOptions: (type, data) => {
+        
+    }
 }

@@ -16,6 +16,7 @@ class Chart extends Component {
     componentDidMount() {
         this.instance = HighCharts.chart('theChart', this.props.options)
     }
+
     render() {
         return <div><div id="theChart"></div></div>
     }
