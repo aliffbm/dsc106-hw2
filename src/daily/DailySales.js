@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
-//import TotalSalesComponent from './total/TotalSalesComponent';
-//import RegionSalesComponent from './region/RegionSales'
 import HighCharts from 'highcharts';
-import Chart from '../chart/Chart'
 import dailyTotal from '../data/daily_total.json';
-import dailySales from '../data/daily_sales.json';
 import dailyTable from '../data/daily_table.json';
 import LineGraph from '../chart/LineGraph';
+
+function Description(props) {
+  let str = "";
+  if(props.type=='all'){
+    str = "This information doesn't seem to tell us much related to October event. There does seem to be some volitility. Perhaps people are settling on a new years resolution." 
+    + "Otherwise, there was a small net negative by month end."
+    
+  }else {
+    str = "You can see here that trends were pretty steady. In general, red meat, HM (Hamburgers), still tends to sell higher than Chickent Fillet and Fish Fillet."
+  }
+  let template = ``
+  return (<div class="container"><h4>Inflection point around October</h4><p>{str}</p></div>);
+}
 
 class DailySales extends Component {
   constructor(props) {
@@ -71,18 +80,22 @@ class DailySales extends Component {
     console.log("rerendering???", this.state)
     return (
       <div>
-        <div className="p-3">
-          <h6>Choose <strong>All</strong> for total of regions for each month or <strong>By Region</strong> to see each</h6>
-        </div>
-        <nav className="nav justify-content-center">
-          <button className="btn btn-info m-2" onClick={this.clickedAll}><Link className="nav-link text-light" to="/daily-sales/all">All</Link></button>
-          <button className="btn btn-info m-2" onClick={this.clickedRegion}><Link className="nav-link text-light" to="/daily-sales/byregion">By Region</Link></button>
-        </nav>
         <main>
-          <Switch>
-            <Route path="/daily-sales/all" render={() => <LineGraph names={this.state.names} data={this.state.data} categories={this.state.categories} type={this.state.type}></LineGraph>}></Route>
-            <Route path="/daily-sales/byregion" render={() => <LineGraph names={this.state.names} data={this.state.data} categories={this.state.categories} type={this.state.type}></LineGraph>}></Route>
-          </Switch>
+          <div className="row p-3">
+            <div className="col-md-4 brief">
+              <Description type={this.state.type}/>
+            </div>
+            <div className="col-md-8">
+              <Switch>
+                <Route path="/daily-sales/all" render={() => <LineGraph names={this.state.names} data={this.state.data} categories={this.state.categories} type={this.state.type}></LineGraph>}></Route>
+                <Route path="/daily-sales/byregion" render={() => <LineGraph names={this.state.names} data={this.state.data} categories={this.state.categories} type={this.state.type}></LineGraph>}></Route>
+              </Switch>
+              <nav className="nav justify-content-center">
+                <button className="btn btn-info m-2" onClick={this.clickedAll}><Link className="nav-link text-light" to="/daily-sales/all">All</Link></button>
+                <button className="btn btn-info m-2" onClick={this.clickedRegion}><Link className="nav-link text-light" to="/daily-sales/byregion">By Region</Link></button>
+              </nav>
+            </div>
+          </div>
         </main>
       </div>
     )

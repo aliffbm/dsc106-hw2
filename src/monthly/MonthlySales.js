@@ -9,8 +9,11 @@ import monthlySales from '../data/monthly_sales.json';
 import monthlyTable from '../data/monthly_table.json';
 import LineGraph from '../chart/LineGraph';
 
+import './MonthlySales.css'
+
 function Description(props) {
   let str = "";
+  console.log("propssdd", props)
   if(props.type=='all'){
     str = "Notice there was an inflection point around October when Burger King came out with their impossible burger. Although the change is obvious on" 
     + " an aggregated the view, it is not so obvious looking at the trend in time on the individual regions. This is a general pattern of little noticeable variation among respective groups as well. You can see more of this by viewing/clicking By Region" 
@@ -21,7 +24,7 @@ function Description(props) {
     + " is eaten, including chicken and fish. So in general, if people choose an alternative eating style from meat eating to non meat eating, we could possibly expect to see changes amongst all Mcdonalds meat products."
   }
   let template = ``
-  return (<div class="container"><h1>Inflection point around October</h1><p>{str}</p></div>);
+  return (<div className="container"><h4>Inflection point around October</h4><p>{str}</p></div>);
 }
 
 class MonthlySales extends Component {
@@ -80,22 +83,33 @@ class MonthlySales extends Component {
   render() {
     return (
       <div>
-        <div className="p-3">
-          <h6>Choose <strong>All</strong> for total of regions for each month or <strong>By Region</strong> to see each</h6>
-        </div>
-        <nav className="nav justify-content-center">
-          <button className="btn btn-info m-2" onClick={this.clickedAll}><Link className="nav-link text-light" to="/monthly-sales/all">All</Link></button>
-          <button className="btn btn-info m-2" onClick={this.clickedRegion}><Link className="nav-link text-light" to="/monthly-sales/byregion">By Region</Link></button>
-        </nav>
+        
+        
         <main>
-          <Switch>
-            <Route path="/monthly-sales/all" render={() => <LineGraph names={this.state.names} data={this.state.data} categories={this.state.categories} type={this.state.type}></LineGraph>}></Route>
-            <Route path="/monthly-sales/byregion" render={() => <LineGraph names={this.state.names} data={this.state.data} categories={this.state.categories} type={this.state.type}></LineGraph>}></Route>
-          </Switch>
+          <div className="row p-3">
+            <div className="col-md-4 brief">
+              <Description type={this.state.type}/>
+            </div>
+            <div className="col-md-8">
+              <Switch>
+                <Route path="/monthly-sales/all" render={() => <LineGraph names={this.state.names} data={this.state.data} categories={this.state.categories} type={this.state.type}></LineGraph>}></Route>
+                <Route path="/monthly-sales/byregion" render={() => <LineGraph names={this.state.names} data={this.state.data} categories={this.state.categories} type={this.state.type}></LineGraph>}></Route>
+              </Switch>
+              <nav className="nav justify-content-center">
+                <button className="btn btn-info m-2" onClick={this.clickedAll}><Link className="nav-link text-light" to="/monthly-sales/all">All</Link></button>
+                <button className="btn btn-info m-2" onClick={this.clickedRegion}><Link className="nav-link text-light" to="/monthly-sales/byregion">By Region</Link></button>
+              </nav>
+            </div>
+          
+
+          </div>
+          
+          
         </main>
+        
         <div>
             
-            <Description type={this.state.type}/>
+            {/* <Description type={this.state.type}/> */}
         </div>
       </div>
     )

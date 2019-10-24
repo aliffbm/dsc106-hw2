@@ -21,4 +21,31 @@
   color: #09d3ac;
 }
 
+.nav {
+  background-color: rgb(255,212,43)!important;
+}
 
+button {
+    background-color: rgb(241, 63, 70) !important;
+}
+
+.btn-info {
+  border: none;
+}
+
+.sheet {
+  background-color: white;
+}
+
+.brief {
+  background-color: rgb(241, 63, 70);
+  color: white;
+}
+
+.brief h4 {
+  transform: translateY(50%);
+}
+
+.brief p {
+  transform: translateY(8%);
+}
